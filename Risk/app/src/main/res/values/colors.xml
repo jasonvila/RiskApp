@@ -3,4 +3,40 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <item name="team_0_color_r" format="float" type="dimen">1.0</item>
+    <item name="team_0_color_g" format="float" type="dimen">0.0</item>
+    <item name="team_0_color_b" format="float" type="dimen">0.0</item>
+
+    <item name="team_1_color_r" format="float" type="dimen">0.0</item>
+    <item name="team_1_color_g" format="float" type="dimen">1.0</item>
+    <item name="team_1_color_b" format="float" type="dimen">0.0</item>
+
+    <item name="team_2_color_r" format="float" type="dimen">0.0</item>
+    <item name="team_2_color_g" format="float" type="dimen">0.0</item>
+    <item name="team_2_color_b" format="float" type="dimen">1.0</item>
+
+    <item name="team_3_color_r" format="float" type="dimen">0.5</item>
+    <item name="team_3_color_g" format="float" type="dimen">0.5</item>
+    <item name="team_3_color_b" format="float" type="dimen">0.0</item>
+
+    <item name="team_4_color_r" format="float" type="dimen">0.0</item>
+    <item name="team_4_color_g" format="float" type="dimen">0.5</item>
+    <item name="team_4_color_b" format="float" type="dimen">0.5</item>
+
+    <item name="team_5_color_r" format="float" type="dimen">0.5</item>
+    <item name="team_5_color_g" format="float" type="dimen">0.0</item>
+    <item name="team_5_color_b" format="float" type="dimen">0.5</item>
+
+    <item name="team_6_color_r" format="float" type="dimen">1.0</item>
+    <item name="team_6_color_g" format="float" type="dimen">0.0</item>
+    <item name="team_6_color_b" format="float" type="dimen">1.0</item>
+
+    <item name="team_7_color_r" format="float" type="dimen">0.0</item>
+    <item name="team_7_color_g" format="float" type="dimen">1.0</item>
+    <item name="team_7_color_b" format="float" type="dimen">1.0</item>
+
+    <item name="team_8_color_r" format="float" type="dimen">1.0</item>
+    <item name="team_8_color_g" format="float" type="dimen">1.0</item>
+    <item name="team_8_color_b" format="float" type="dimen">0.0</item>
 </resources>

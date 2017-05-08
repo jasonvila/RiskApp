@@ -2,4 +2,5 @@
     <string name="app_name">Risk</string>
     <string name="typeValue">t</string>
     <string name="nameValue">n</string>
+    <string name="separators">_</string>
 </resources>

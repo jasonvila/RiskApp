@@ -52,7 +52,10 @@ public class TerritoryShape {
 
     float color[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f };
 
-    public TerritoryShape(){
+    public TerritoryShape(float center_x, float center_y){
+
+        this.center_x = center_x;
+        this.center_y = center_y;
 
         int idx = 0;
 
@@ -60,8 +63,8 @@ public class TerritoryShape {
 //        vertices[idx++] = center_x;
 //        vertices[idx++] = center_y;
 
-        for(int i = 0; i < vertexCount-1; i++){
-            float part = (i / (float) (vertexCount-1));
+        for(int i = 0; i < vertexCount; i++){
+            float part = (i / (float) (vertexCount));
             float rad = part * 2 * (float) Math.PI;
             float outer_x = center_x + radius * (float) Math.cos(rad);
             float outer_y = center_y + radius * (float) Math.sin(rad);
@@ -136,6 +139,14 @@ public class TerritoryShape {
 
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(mPositionHandle);
+    }
+
+    public void setColor(float[] color){
+        if(color.length == 4){
+            for(int i = 0; i < color.length; i++){
+                this.color[i] = color[i];
+            }
+        }
     }
 
 

@@ -25,14 +25,19 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
 
     private float mAngle;
 
-    private Territory r;
+    private TerritoryManager tm;
+    private Territory t1;
+    private Territory t2;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config){
         // Set the background frame color
-        GLES20.glClearColor(0.4f, 0.7f, 0.7f, 0.3f);
+        GLES20.glEnable(GLES20.GL_BLEND);// you enable blending function
+        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
-        r = new Territory();
+        GLES20.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
+
+        tm = new TerritoryManager(8,65);
     }
 
     @Override
@@ -45,13 +50,20 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
         // Calculate the projection and view transformation
         Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
 
-        r.draw(mMVPMatrix);
+        float[] newMMVPMatrix = new float[mMVPMatrix.length];
+        for(int i = 0; i < newMMVPMatrix.length; i++){
+            newMMVPMatrix[i] = mMVPMatrix[i];
+        }
+
+        tm.draw(mMVPMatrix);
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height){
+        GameConstants.GAME_CONSTANTS.updateGameDimensions(width, height);
         GLES20.glViewport(0, 0, width, height);
         float ratio = (float) width/height;
+        System.out.println("width: " + width + "height: " + height);
 //        gl.glMatrixMode(GL10.GL_PROJECTION);
 //        gl.glLoadIdentity();
 
@@ -77,5 +89,9 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
             Log.e(TAG, glOperation + ": glError " + error);
             throw new RuntimeException(glOperation + ": glError " + error);
         }
+    }
+
+    public void changeTeam(Integer team, float x, float y){
+        tm.changeTeam(team, x, y);
     }
 }

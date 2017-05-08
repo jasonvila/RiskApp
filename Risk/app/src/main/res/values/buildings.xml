@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="bPreName">b_</string>
+    <string name="bPreName">b</string>
     <integer name="numBTypes">3</integer>
+    <integer name="b_t_0">100000</integer>
+    <integer name="b_t_1">80000</integer>
+    <integer name="b_t_2">60000</integer>
     <string name="b_n_0">Factory</string>
     <string name="b_n_1">Cities</string>
     <string name="b_n_2">Military Base</string>
