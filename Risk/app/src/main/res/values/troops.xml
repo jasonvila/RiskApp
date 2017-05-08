@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tPreName">t_</string>
+    <integer name="numTTypes">3</integer>
+    <integer name="t_t_0">1</integer>
+    <integer name="t_t_1">5</integer>
+    <integer name="t_t_2">10</integer>
+    <string name="t_n_0">Soldier</string>
+    <string name="t_n_1">Cavalry</string>
+    <string name="t_n_2">Artillery</string>
+</resources>
