@@ -1,6 +1,8 @@
 package game.com.risk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -15,18 +17,26 @@ public class TerritoryManager {
 
     private HashMap<String, Territory> stringToTerritories = new HashMap<String, Territory>();
     private HashMap<TerritoryPosition, String> positionToTerritories = new HashMap<TerritoryPosition, String>();
+    private float[] xRand = new float[65];
+    private float[] yRand = new float[65];
+    private Integer[] coord = new Integer[65];
 
 
     public TerritoryManager(Integer numTeams, Integer numTerritories){
+
+        for(int i = 0; i < coord.length; i++){
+            coord[i] = i;
+        }
+
+        Collections.shuffle(Arrays.asList(coord));
+
         this.numTeams = numTeams;
         this.numTerritories = numTerritories;
 
-        float[] xRand = new float[numTerritories];
-        float[] yRand = new float[numTerritories];
         float curX = 0.8f;
         float curY = 0.8f;
 
-        for(int i =0; i < numTerritories; i++){
+        for(int i =0; i < coord.length; i++){
 
             if(curX >= -0.4f && curY >= -0.8f){
                 curX = curX - 0.2f;
@@ -40,13 +50,14 @@ public class TerritoryManager {
             if(curX == 0.0f && curY == 0.0f){
                 System.out.println("Territory at Center!!!");
             }
+
             xRand[i] = curX;
             yRand[i] = curY;
         }
 
         for(int i = 0; i < numTerritories; i++){
-            Territory t = new Territory(xRand[i], yRand[i]);
-            TerritoryPosition tP = new TerritoryPosition(xRand[i], yRand[i], 0.1f);
+            Territory t = new Territory(xRand[coord[i]], yRand[coord[i]]);
+            TerritoryPosition tP = new TerritoryPosition(xRand[coord[i]], yRand[coord[i]], 0.1f);
             stringToTerritories.put(t.toString(), t);
             positionToTerritories.put(tP, t.toString());
         }

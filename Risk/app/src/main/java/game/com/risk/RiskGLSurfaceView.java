@@ -35,18 +35,20 @@ public class RiskGLSurfaceView extends GLSurfaceView{
         float x = -((e.getX()/(getWidth()))*1.4f - 0.7f);
         float y = -((e.getY()/getHeight())*2 - 1.0f);
 
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_UP:
+        Integer motionaction = e.getAction();
 
-                if(team > 1) {
-                    team = 0;
-                }else{
-                    team++;
-                }
+        if((motionaction & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_POINTER_DOWN) {
+            System.out.println("Zooming!!");
+        } else if(motionaction == MotionEvent.ACTION_UP) {
 
+            if (team > 1) {
+                team = 0;
+            } else {
+                team++;
+            }
 
-                mr.changeTeam(team, x, y);
-                requestRender();
+            mr.changeTeam(team, x, y);
+            requestRender();
         }
         return true;
     }

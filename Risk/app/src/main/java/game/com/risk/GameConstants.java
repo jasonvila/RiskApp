@@ -30,8 +30,8 @@ public class GameConstants {
         bTypes.put("Military_Bases", 2);
         numTTypes = tTypes.keySet().size();
         numBTypes = bTypes.keySet().size();
-        width = 1200;
-        height = 1648;
+        width = 1920;
+        height = 928;
     }
 
     public void setContext(Context c){

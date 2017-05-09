@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
+import java.util.Random;
 
 /**
  * Created by jason on 5/7/2017.
@@ -59,15 +60,13 @@ public class TerritoryShape {
 
         int idx = 0;
 
-        // Center vertex for triangle fan
-//        vertices[idx++] = center_x;
-//        vertices[idx++] = center_y;
+        Random r = new Random();
 
         for(int i = 0; i < vertexCount; i++){
             float part = (i / (float) (vertexCount));
             float rad = part * 2 * (float) Math.PI;
-            float outer_x = center_x + radius * (float) Math.cos(rad);
-            float outer_y = center_y + radius * (float) Math.sin(rad);
+            float outer_x = center_x + radius * (float) Math.cos(rad)*r.nextFloat();
+            float outer_y = center_y + radius * (float) Math.sin(rad)*r.nextFloat();
 
             vertices[idx++] = outer_x;
             vertices[idx++] = outer_y;
