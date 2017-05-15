@@ -1,4 +1,4 @@
-package game.com.risk.Territory.Manager;
+package game.com.risk.SingleSurfaceView.Territory.Manager;
 
 import android.util.Log;
 
@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
-import game.com.risk.Territory.Position.TerritoryPositionCircle;
-import game.com.risk.Territory.Territory;
+import game.com.risk.SingleSurfaceView.Territory.Position.TerritoryPositionCircle;
+import game.com.risk.SingleSurfaceView.Territory.Territory;
 
 /**
  * Created by jason on 5/15/2017.
@@ -26,6 +26,7 @@ public abstract class TerritoryManager {
 
     protected Integer[] coord = new Integer[65];
 
+    protected Territory selectedTerritory;
 
     public TerritoryManager(Integer numTeams, Integer numTerritories){
 
@@ -45,6 +46,27 @@ public abstract class TerritoryManager {
         Set<String> key = stringToTerritories.keySet();
         for(String tN : key){
             stringToTerritories.get(tN).draw(m);
+        }
+    }
+
+    public void selectTerritory(float x, float y){
+        Set<TerritoryPositionCircle> keySet = positionToTerritories.keySet();
+
+        Territory newSelectedTerritory;
+
+        for(TerritoryPositionCircle k : keySet){
+            if(k.isInTerritory(x, y)){
+                newSelectedTerritory = stringToTerritories.get(positionToTerritories.get(k));
+
+                if(selectedTerritory != null && !newSelectedTerritory.equals(selectedTerritory)){
+                    selectedTerritory.setIsSelected();
+                }
+
+                selectedTerritory = newSelectedTerritory;
+
+                selectedTerritory.setIsSelected();
+                break;
+            }
         }
     }
 

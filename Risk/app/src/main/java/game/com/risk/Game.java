@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.opengl.GLSurfaceView;
 
-import game.com.risk.Constants.GameConstants;
+import game.com.risk.SingleSurfaceView.Constants.GameConstants;
+import game.com.risk.SingleSurfaceView.RiskGLSurfaceView;
 
 public class Game extends AppCompatActivity {
 

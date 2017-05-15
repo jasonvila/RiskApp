@@ -1,4 +1,4 @@
-package game.com.risk.Territory.Manager;
+package game.com.risk.SingleSurfaceView.Territory.Manager;
 
 import android.util.Log;
 
@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
-import game.com.risk.Territory.Position.TerritoryPositionCircle;
-import game.com.risk.Territory.Territory;
+import game.com.risk.SingleSurfaceView.Territory.Position.TerritoryPositionCircle;
+import game.com.risk.SingleSurfaceView.Territory.Territory;
 
 /**
  * Created by jason on 5/7/2017.
@@ -70,6 +70,9 @@ public class TerritoryManagerCircle extends TerritoryManager{
                 stringToTerritories.get(k).changeTeams(idx);
                 idx++;
             }
+
+            keySet = stringToTerritories.keySet();
+
         } catch(Exception e){
             Log.e(TAG, e.getMessage());
         }

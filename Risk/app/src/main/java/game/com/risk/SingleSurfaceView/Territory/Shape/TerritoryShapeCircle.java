@@ -1,12 +1,6 @@
-package game.com.risk.Territory.Shape;
+package game.com.risk.SingleSurfaceView.Territory.Shape;
 
-import android.opengl.GLES20;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Random;
-
-import game.com.risk.Renderer.RiskMapRenderer;
 
 /**
  * Created by jason on 5/7/2017.

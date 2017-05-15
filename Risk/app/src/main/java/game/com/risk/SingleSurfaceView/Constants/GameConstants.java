@@ -1,4 +1,4 @@
-package game.com.risk.Constants;
+package game.com.risk.SingleSurfaceView.Constants;
 
 import android.content.Context;
 import android.util.TypedValue;

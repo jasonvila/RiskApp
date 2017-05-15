@@ -1,4 +1,4 @@
-package game.com.risk.Renderer;
+package game.com.risk.SingleSurfaceView.Renderer;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -8,9 +8,9 @@ import android.util.Log;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import game.com.risk.Constants.GameConstants;
-import game.com.risk.Territory.Manager.TerritoryManager;
-import game.com.risk.Territory.Manager.TerritoryManagerCircle;
+import game.com.risk.SingleSurfaceView.Constants.GameConstants;
+import game.com.risk.SingleSurfaceView.Territory.Manager.TerritoryManager;
+import game.com.risk.SingleSurfaceView.Territory.Manager.TerritoryManagerCircle;
 
 /**
  * Created by jason on 5/7/2017.
@@ -95,5 +95,9 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
 
     public void changeTeam(Integer team, float x, float y){
         tm.changeTeam(team, x, y);
+    }
+
+    public void selectTerritory(float x, float y){
+        tm.selectTerritory(x,y);
     }
 }

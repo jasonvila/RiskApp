@@ -1,10 +1,10 @@
-package game.com.risk;
+package game.com.risk.SingleSurfaceView;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import game.com.risk.Renderer.RiskMapRenderer;
+import game.com.risk.SingleSurfaceView.Renderer.RiskMapRenderer;
 
 /**
  * Created by jason on 5/7/2017.
@@ -44,16 +44,22 @@ public class RiskGLSurfaceView extends GLSurfaceView{
             System.out.println("Zooming!!");
         } else if(motionaction == MotionEvent.ACTION_UP) {
 
-            if (team > 1) {
-                team = 0;
-            } else {
-                team++;
-            }
-
-            mr.changeTeam(team, x, y);
+//            changeTeam(x,y);
+            mr.selectTerritory(x,y);
             requestRender();
         }
         return true;
+    }
+
+    public void changeTeam(float x, float y){
+        if (team > 1) {
+            team = 0;
+        } else {
+            team++;
+        }
+
+        mr.changeTeam(team, x, y);
+        requestRender();
     }
 
 

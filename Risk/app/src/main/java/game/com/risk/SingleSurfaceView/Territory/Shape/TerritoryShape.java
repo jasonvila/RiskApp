@@ -1,13 +1,12 @@
-package game.com.risk.Territory.Shape;
+package game.com.risk.SingleSurfaceView.Territory.Shape;
 
 import android.opengl.GLES20;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.util.Random;
 
-import game.com.risk.Renderer.RiskMapRenderer;
+import game.com.risk.SingleSurfaceView.Renderer.RiskMapRenderer;
 
 /**
  * Created by jason on 5/15/2017.
@@ -50,9 +49,9 @@ public abstract class TerritoryShape {
 
     protected float vertices[] = new float[vertexCount*2];
 
+    float color[] = { 0.2f, 0.709803922f, 0.898039216f, 0.8f };
 
-
-    float color[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f };
+//    protected float[] mvpMatrix;
 
     public TerritoryShape(){
         ByteBuffer bb = ByteBuffer.allocateDirect(
@@ -74,6 +73,9 @@ public abstract class TerritoryShape {
     }
 
     public void draw(float[] mvpMatrix){
+
+//        this.mvpMatrix = mvpMatrix;
+
         // Add program to OpenGL environment
         GLES20.glUseProgram(mProgram);
 
@@ -109,6 +111,8 @@ public abstract class TerritoryShape {
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }
+
+
 
     public void setColor(float[] color){
         if(color.length == 4){
