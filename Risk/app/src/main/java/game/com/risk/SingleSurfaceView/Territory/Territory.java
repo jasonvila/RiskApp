@@ -69,12 +69,17 @@ public class Territory {
         s.setColor(GameConstants.GAME_CONSTANTS.getTeamColor(team));
     }
 
-    public void setIsSelected(){
+    public Boolean setIsSelected(){
         if(isSelected){
             isSelected = false;
         } else{
             isSelected = true;
         }
+        return isSelected;
+    }
+
+    public Boolean getIsSelected(){
+        return isSelected;
     }
 
     public void addTroopType(Integer tType, Long numTroops){

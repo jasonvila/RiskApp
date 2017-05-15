@@ -62,9 +62,11 @@ public abstract class TerritoryManager {
 
         for(TerritoryPositionCircle k : keySet){
             if(k.isInTerritory(x, y)){
+
                 newSelectedTerritory = stringToTerritories.get(positionToTerritories.get(k));
 
-                if(selectedTerritory != null && !newSelectedTerritory.equals(selectedTerritory)){
+                if(selectedTerritory != null && !newSelectedTerritory.equals(selectedTerritory)
+                        && selectedTerritory.getIsSelected()){
                     selectedTerritory.setIsSelected();
                 }
 

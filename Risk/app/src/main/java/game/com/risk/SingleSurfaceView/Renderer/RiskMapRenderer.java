@@ -39,7 +39,7 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
 
-        tm = new TerritoryManagerCircle(8,45);
+        tm = new TerritoryManagerCircle(8,10);
     }
 
     @Override

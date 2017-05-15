@@ -74,15 +74,17 @@ public class TerritoryManagerCircle extends TerritoryManager{
             }
 
             Set<TerritoryPositionCircle> keySet1 = positionToTerritories.keySet();
-            Set<TerritoryPositionCircle> keySet2 = positionToTerritories.keySet();
+            Set<TerritoryPositionCircle> keySet2;
 
             for(TerritoryPositionCircle k1 : keySet1){
                 Boolean hasNeighbor = false;
 
                 while(!hasNeighbor) {
 
+                    keySet2 = positionToTerritories.keySet();
+
                     for (TerritoryPositionCircle k2 : keySet2) {
-                        if (!k1.equals(k2) && k1.isNeighbor(k2)) {
+                        if (!k1.equals(k2) && k2.isNeighbor(k1)) {
                             Log.d(TAG, "Has neighbor " + k1.toString());
                             hasNeighbor = true;
                             args = new float[5];
@@ -95,10 +97,12 @@ public class TerritoryManagerCircle extends TerritoryManager{
                         }
                     }
                     if(!hasNeighbor) {
-                        if(k1.getRadius() > 0.8f){
-                            hasNeighbor = true;
-                        }
+//                        if(k1.getRadius() > 0.8f){
+//                            hasNeighbor = true;
+//                        }
                         k1.increaseNeighborRadius();
+                    } else{
+                        break;
                     }
                 }
             }
