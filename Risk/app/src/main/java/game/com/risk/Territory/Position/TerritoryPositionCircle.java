@@ -1,15 +1,17 @@
-package game.com.risk;
+package game.com.risk.Territory.Position;
 
 /**
  * Created by jason on 5/8/2017.
  */
 
-public class TerritoryPosition {
+public class TerritoryPositionCircle {
+
+    private static final String TAG = "TerritoryPositionCircle";
 
     private float center_x, center_y, radius;
     private float leftXBound, rightXBound, upperYBound, lowerYBound;
 
-    public TerritoryPosition(float center_x, float center_y, float radius){
+    public TerritoryPositionCircle(float center_x, float center_y, float radius){
         this.center_x = center_x;
         this.center_y = center_y;
         this.radius = radius;

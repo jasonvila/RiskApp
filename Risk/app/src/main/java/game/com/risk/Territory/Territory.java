@@ -1,17 +1,19 @@
-package game.com.risk;
+package game.com.risk.Territory;
 
-import android.content.Context;
-import android.view.View;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+
+import game.com.risk.Constants.GameConstants;
+import game.com.risk.Territory.Shape.TerritoryShape;
+import game.com.risk.Territory.Shape.TerritoryShapeCircle;
 
 /**
  * Created by jason on 5/7/2017.
  */
 
 public class Territory {
+
+    private static final String TAG = "Territory";
 
     private TerritoryShape s;
     private HashMap<Integer, Long> tMilitary = new HashMap<Integer, Long>();
@@ -21,10 +23,10 @@ public class Territory {
     private Integer team;
 
 
-    public Territory(float center_x, float center_y){
+    public Territory(float[] args)throws Exception {
         team = 0;
         isCapital = false;
-        s = new TerritoryShape(center_x, center_y);
+        s = new TerritoryShapeCircle(args);
         tTypes = GameConstants.GAME_CONSTANTS.numTTypes;
         for(int i = 0; i < tTypes; i++){
             tMilitary.put(i, 0L);

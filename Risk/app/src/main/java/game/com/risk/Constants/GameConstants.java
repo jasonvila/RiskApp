@@ -1,9 +1,12 @@
-package game.com.risk;
+package game.com.risk.Constants;
 
 import android.content.Context;
 import android.util.TypedValue;
 
 import java.util.HashMap;
+
+import game.com.risk.R;
+
 
 /**
  * Created by jason on 5/7/2017.
@@ -11,6 +14,7 @@ import java.util.HashMap;
 
 public class GameConstants {
 
+    private static final String TAG = "GameConstants";
     public static final GameConstants GAME_CONSTANTS = new GameConstants();
 
     public HashMap<String, Integer> tTypes = new HashMap<String, Integer>();
@@ -90,7 +94,7 @@ public class GameConstants {
         value = outValue.getFloat();
 
         color[2] = value;
-        color[3] = 0.5f;
+        color[3] = 0.8f;
 
         return color;
     }

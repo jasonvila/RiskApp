@@ -1,7 +1,5 @@
-package game.com.risk;
+package game.com.risk.Renderer;
 
-import android.graphics.Color;
-import android.opengl.GLES10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -9,6 +7,10 @@ import android.util.Log;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+
+import game.com.risk.Constants.GameConstants;
+import game.com.risk.Territory.Manager.TerritoryManager;
+import game.com.risk.Territory.Manager.TerritoryManagerCircle;
 
 /**
  * Created by jason on 5/7/2017.
@@ -36,7 +38,7 @@ public class RiskMapRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
 
-        tm = new TerritoryManager(8,45);
+        tm = new TerritoryManagerCircle(8,45);
     }
 
     @Override

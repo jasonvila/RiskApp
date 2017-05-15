@@ -1,20 +1,24 @@
-package game.com.risk;
+package game.com.risk.Territory.Shape;
 
 import android.opengl.GLES20;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
 import java.util.Random;
 
+import game.com.risk.Renderer.RiskMapRenderer;
+
 /**
- * Created by jason on 5/7/2017.
+ * Created by jason on 5/15/2017.
  */
 
-public class TerritoryShape {
+public abstract class TerritoryShape {
 
-    private final String vertexShaderCode =
+
+    private static final String TAG = "TerritoryShape";
+
+    protected final String vertexShaderCode =
             // This matrix member variable provides a hook to manipulate
             // the coordinates of the objects that use this vertex shader
             "uniform mat4 uMVPMatrix;" +
@@ -26,69 +30,36 @@ public class TerritoryShape {
                     "  gl_Position = uMVPMatrix * vPosition;" +
                     "}";
 
-    private final String fragmentShaderCode =
+    protected final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 vColor;" +
                     "void main() {" +
                     "  gl_FragColor = vColor;" +
                     "}";
 
-    private final FloatBuffer vertexBuffer;
-    private final int mProgram;
-    private int mPositionHandle;
-    private int mColorHandle;
-    private int mMVPMatrixHandle;
+    protected final FloatBuffer vertexBuffer;
+    protected final int mProgram;
+    protected int mPositionHandle;
+    protected int mColorHandle;
+    protected int mMVPMatrixHandle;
 
     static final int COORDS_PER_VERTEX = 2;
-    private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+    protected final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
-    private final int vertexCount = 30;
-    float radius = 0.1f;
-    float center_x = 0.0f;
-    float center_y = 0.0f;
+    protected final int vertexCount = 30;
 
-    private float vertices[] = new float[vertexCount*2];
+    protected float vertices[] = new float[vertexCount*2];
 
 
 
     float color[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f };
 
-    public TerritoryShape(float center_x, float center_y){
-
-        this.center_x = center_x;
-        this.center_y = center_y;
-
-        int idx = 0;
-
-        Random r = new Random();
-
-        for(int i = 0; i < vertexCount; i++){
-            float part = (i / (float) (vertexCount));
-            float rad = part * 2 * (float) Math.PI;
-            float outer_x = center_x + radius * (float) Math.cos(rad)*r.nextFloat();
-            float outer_y = center_y + radius * (float) Math.sin(rad)*r.nextFloat();
-
-            vertices[idx++] = outer_x;
-            vertices[idx++] = outer_y;
-        }
-
-
+    public TerritoryShape(){
         ByteBuffer bb = ByteBuffer.allocateDirect(
                 // (# of coordinate values * 4 bytes per float)
                 vertices.length * 4);
         bb.order(ByteOrder.nativeOrder());
         vertexBuffer = bb.asFloatBuffer();
-        vertexBuffer.put(vertices);
-        vertexBuffer.position(0);
-
-//        // initialize byte buffer for the draw list
-//        ByteBuffer dlb = ByteBuffer.allocateDirect(
-//                // (# of coordinate values * 2 bytes per short)
-//                drawOrder.length * 2);
-//        dlb.order(ByteOrder.nativeOrder());
-//        drawListBuffer = dlb.asShortBuffer();
-//        drawListBuffer.put(drawOrder);
-//        drawListBuffer.position(0);
 
         // prepare shaders and OpenGL program
         int vertexShader = RiskMapRenderer.loadShader(
@@ -100,7 +71,6 @@ public class TerritoryShape {
         GLES20.glAttachShader(mProgram, vertexShader);   // add the vertex shader to program
         GLES20.glAttachShader(mProgram, fragmentShader); // add the fragment shader to program
         GLES20.glLinkProgram(mProgram);                  // create OpenGL program executables
-
     }
 
     public void draw(float[] mvpMatrix){
@@ -147,6 +117,5 @@ public class TerritoryShape {
             }
         }
     }
-
 
 }

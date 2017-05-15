@@ -3,13 +3,16 @@ package game.com.risk;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
-import android.view.View;
+
+import game.com.risk.Renderer.RiskMapRenderer;
 
 /**
  * Created by jason on 5/7/2017.
  */
 
 public class RiskGLSurfaceView extends GLSurfaceView{
+
+    private static final String TAG = "RiskGLSurfaceView";
 
     private RiskMapRenderer mr;
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;

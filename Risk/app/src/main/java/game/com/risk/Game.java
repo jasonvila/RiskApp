@@ -1,11 +1,14 @@
 package game.com.risk;
 
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.opengl.GLSurfaceView;
 
+import game.com.risk.Constants.GameConstants;
+
 public class Game extends AppCompatActivity {
+
+    private static final String TAG = "Game";
 
     private GLSurfaceView gl;
 
