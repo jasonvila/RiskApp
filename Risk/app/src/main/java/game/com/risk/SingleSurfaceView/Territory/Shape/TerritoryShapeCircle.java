@@ -43,4 +43,6 @@ public class TerritoryShapeCircle extends TerritoryShape{
         vertexBuffer.put(vertices);
         vertexBuffer.position(0);
     }
+
+
 }

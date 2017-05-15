@@ -88,5 +88,4 @@ public class Territory {
     public void moveShape(float x, float y){
 
     }
-
 }

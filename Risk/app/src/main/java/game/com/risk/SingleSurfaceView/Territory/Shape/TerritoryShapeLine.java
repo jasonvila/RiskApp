@@ -1,6 +1,5 @@
 package game.com.risk.SingleSurfaceView.Territory.Shape;
 
-import android.opengl.GLES10;
 import android.opengl.GLES20;
 
 import java.nio.ByteBuffer;
@@ -13,8 +12,7 @@ import game.com.risk.SingleSurfaceView.Renderer.RiskMapRenderer;
  * Created by jason on 5/15/2017.
  */
 
-public abstract class TerritoryShape {
-
+public class TerritoryShapeLine {
 
     private static final String TAG = "TerritoryShape";
 
@@ -46,15 +44,16 @@ public abstract class TerritoryShape {
     static final int COORDS_PER_VERTEX = 2;
     protected final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
-    protected final int vertexCount = 30;
+    protected final int vertexCount = 2;
 
     protected float vertices[] = new float[vertexCount*2];
 
-    float color[] = { 0.2f, 0.709803922f, 0.898039216f, 0.8f };
+    float color[] = { 0f, 0f, 0f, 0.8f };
 
 //    protected float[] mvpMatrix;
 
-    public TerritoryShape(){
+    public TerritoryShapeLine(){
+
         ByteBuffer bb = ByteBuffer.allocateDirect(
                 // (# of coordinate values * 4 bytes per float)
                 vertices.length * 4);
@@ -107,7 +106,7 @@ public abstract class TerritoryShape {
         RiskMapRenderer.checkGlError("glUniformMatrix4fv");
 
         // Draw the triangle
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, vertexCount);
+        GLES20.glDrawArrays(GLES20.GL_LINES, 0, vertexCount);
 
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(mPositionHandle);

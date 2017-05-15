@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Set;
 
 import game.com.risk.SingleSurfaceView.Territory.Position.TerritoryPositionCircle;
+import game.com.risk.SingleSurfaceView.Territory.Shape.TerritoryShapeLine;
+import game.com.risk.SingleSurfaceView.Territory.Shape.TerritoryShapeLineToNeighbor;
 import game.com.risk.SingleSurfaceView.Territory.Territory;
 
 /**
@@ -71,7 +73,37 @@ public class TerritoryManagerCircle extends TerritoryManager{
                 idx++;
             }
 
-            keySet = stringToTerritories.keySet();
+            Set<TerritoryPositionCircle> keySet1 = positionToTerritories.keySet();
+            Set<TerritoryPositionCircle> keySet2 = positionToTerritories.keySet();
+
+            for(TerritoryPositionCircle k1 : keySet1){
+                Boolean hasNeighbor = false;
+
+                while(!hasNeighbor) {
+
+                    for (TerritoryPositionCircle k2 : keySet2) {
+                        if (!k1.equals(k2) && k1.isNeighbor(k2)) {
+                            Log.d(TAG, "Has neighbor " + k1.toString());
+                            hasNeighbor = true;
+                            args = new float[5];
+                            args[0] = k1.getPosition()[0];
+                            args[1] = k1.getPosition()[1];
+                            args[2] = k2.getPosition()[0];
+                            args[3] = k2.getPosition()[1];
+                            TerritoryShapeLine t = new TerritoryShapeLineToNeighbor(args);
+                            stringToLine.put(t.toString(), t);
+                        }
+                    }
+                    if(!hasNeighbor) {
+                        if(k1.getRadius() > 0.8f){
+                            hasNeighbor = true;
+                        }
+                        k1.increaseNeighborRadius();
+                    }
+                }
+            }
+
+            Log.d(TAG, "Number of territories: " + stringToTerritories.keySet().size());
 
         } catch(Exception e){
             Log.e(TAG, e.getMessage());

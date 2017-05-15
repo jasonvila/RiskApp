@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import game.com.risk.SingleSurfaceView.Territory.Position.TerritoryPositionCircle;
+import game.com.risk.SingleSurfaceView.Territory.Shape.TerritoryShapeLine;
 import game.com.risk.SingleSurfaceView.Territory.Territory;
 
 /**
@@ -21,6 +22,7 @@ public abstract class TerritoryManager {
     protected Integer numTeams;
     protected Integer numTerritories;
 
+    protected HashMap<String, TerritoryShapeLine> stringToLine = new HashMap<String, TerritoryShapeLine>();
     protected HashMap<String, Territory> stringToTerritories = new HashMap<String, Territory>();
     protected HashMap<TerritoryPositionCircle, String> positionToTerritories = new HashMap<TerritoryPositionCircle, String>();
 
@@ -43,9 +45,13 @@ public abstract class TerritoryManager {
 
     public void draw(float[] m){
 
-        Set<String> key = stringToTerritories.keySet();
-        for(String tN : key){
-            stringToTerritories.get(tN).draw(m);
+        Set<String> keySet = stringToTerritories.keySet();
+        for(String k : keySet){
+            stringToTerritories.get(k).draw(m);
+        }
+        keySet = stringToLine.keySet();
+        for(String k : keySet){
+            stringToLine.get(k).draw(m);
         }
     }
 

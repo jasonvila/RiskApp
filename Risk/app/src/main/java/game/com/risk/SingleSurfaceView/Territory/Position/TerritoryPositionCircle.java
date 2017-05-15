@@ -25,10 +25,10 @@ public class TerritoryPositionCircle {
         this.upperYBound = center_y + radius;
         this.lowerYBound = center_y - radius;
 
-        this.nLeftXBound = leftXBound - radius*2;
-        this.nRightXBound = rightXBound + radius*2;
-        this.nUpperYBound = upperYBound + radius*2;
-        this.nLowerYBound = lowerYBound - radius*2;
+        this.nLeftXBound = leftXBound - radius*1.5f;
+        this.nRightXBound = rightXBound + radius*1.5f;
+        this.nUpperYBound = upperYBound + radius*1.5f;
+        this.nLowerYBound = lowerYBound - radius*1.5f;
     }
 
     public Boolean isInTerritory(float x, float y){
@@ -39,8 +39,7 @@ public class TerritoryPositionCircle {
         }
     }
 
-    public Boolean isNeighbor(float x, float y){
-
+    private Boolean isNeighbor(float x, float y){
         if((x <= nRightXBound && x >= nLeftXBound && y <= nUpperYBound && y >= nLowerYBound)){
             return true;
         } else {
@@ -48,4 +47,23 @@ public class TerritoryPositionCircle {
         }
     }
 
+    public Boolean isNeighbor(TerritoryPositionCircle t){
+        return t.isNeighbor(center_x, center_y);
+    }
+
+    public void increaseNeighborRadius(){
+        this.nLeftXBound = nLeftXBound - radius*2.5f;
+        this.nRightXBound = nRightXBound + radius*2.5f;
+        this.nUpperYBound = nUpperYBound + radius*2.5f;
+        this.nLowerYBound = nLowerYBound - radius*2.5f;
+    }
+
+    public float[] getPosition(){
+        float[] p = {center_x, center_y};
+        return p;
+    }
+
+    public float getRadius(){
+        return -(nLeftXBound - leftXBound);
+    }
 }
