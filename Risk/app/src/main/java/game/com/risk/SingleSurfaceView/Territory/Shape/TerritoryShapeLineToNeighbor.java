@@ -29,4 +29,12 @@ public class TerritoryShapeLineToNeighbor extends TerritoryShapeLine {
         vertexBuffer.put(vertices);
         vertexBuffer.position(0);
     }
+
+    public Boolean containsBothNodes(float x1, float x2, float y1, float y2){
+        if((vertices[0] == x1 && vertices[1] == y1 && vertices[2] == x2 && vertices[3] == y2)
+                || (vertices[0] == x2 && vertices[1] == y2 && vertices[2] == x1 && vertices[3] == y1)){
+            return true;
+        }
+        return false;
+    }
 }
