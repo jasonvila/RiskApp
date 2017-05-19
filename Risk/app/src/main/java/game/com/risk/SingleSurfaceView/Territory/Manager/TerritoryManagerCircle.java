@@ -104,16 +104,10 @@ public class TerritoryManagerCircle extends TerritoryManager{
                 for (TerritoryPositionCircle k2 : keySet2) {
                     if (!k1.equals(k2) && k2.isNeighbor(k1)) {
 
-//                          Log.d(TAG, "Has neighbor " + k1.toString());
                         hasNeighbor = true;
-                        args[0] = k1.getPosition()[0];
-                        args[1] = k1.getPosition()[1];
-                        args[2] = k2.getPosition()[0];
-                        args[3] = k2.getPosition()[1];
-                        TerritoryShapeLine t = new TerritoryShapeLineToNeighbor(args);
 
-                        if(stringToLine.get(k1.toString() + k2.toString()) == null
-                                && stringToLine.get(k2.toString() + k1.toString()) == null){
+                        if(stringToLine.get(k1.toString() + "_" + k2.toString()) == null
+                                && stringToLine.get(k2.toString() + "_" + k1.toString()) == null){
 
                             for(HashMap<String, TerritoryPositionCircle> h : lines){
                                 if( h.get(k2.toString()) != null && h.get(k2.toString()) != null){
@@ -125,39 +119,70 @@ public class TerritoryManagerCircle extends TerritoryManager{
                                     h.put(k2.toString(), k2);
                                     inTree = true;
                                 }
-                                if(inTree){
-
-                                    // break;
-
-                                    // new
-                                    mapMergeList.add(i);
-                                }
-                                i++;
+//                                if(inTree){
+//
+//                                    // break;
+//
+//                                    // new
+//                                    Log.d(TAG, k1.toString() + " has neighbor " + k2.toString());
+//                                    mapMergeList.add(i);
+//                                }
+//                                i++;
                             }
 
-                            i = 0;
-
-                            if(!inTree){
-                                HashMap<String, TerritoryPositionCircle> h = new HashMap<String, TerritoryPositionCircle>();
-                                h.put(k1.toString(), k1);
-                                h.put(k2.toString(), k2);
-                                lines.add(h);
-                            } else {
-                                System.out.println();
-                                // new
-                                HashMap<String, TerritoryPositionCircle> h = new HashMap<String, TerritoryPositionCircle>();
-                                for(Integer k : mapMergeList){
-                                    HashMap<String, TerritoryPositionCircle> temp = lines.get(k);
-                                    for(String s : temp.keySet()){
-                                        h.put(s,temp.get(s));
-                                    }
-                                    lines.remove(k);
-                                }
-                                lines.add(h);
-                                mapMergeList.clear();
-                            }
+//                            i = 0;
+//
+//                            if(!inTree){
+//                                HashMap<String, TerritoryPositionCircle> h = new HashMap<String, TerritoryPositionCircle>();
+//                                h.put(k1.toString(), k1);
+//                                h.put(k2.toString(), k2);
+//                                lines.add(h);
+//                            } else {
+//                                System.out.println();
+//                                // new
+//
+//                                HashMap<String, TerritoryPositionCircle> h = new HashMap<String, TerritoryPositionCircle>();
+//
+//                                ArrayList<HashMap<String, TerritoryPositionCircle>> lTemp = new ArrayList<HashMap<String, TerritoryPositionCircle>>();
+//
+//                                for(Integer k : mapMergeList){
+//
+//                                    HashMap<String, TerritoryPositionCircle> temp = lines.get(k);
+//                                    for(String s : temp.keySet()){
+//                                        h.put(s,temp.get(s));
+//                                    }
+//                                    lTemp.add(temp);
+//                                }
+//
+//                                Log.d(TAG, "Merging hashmaps : " + k1.toString());
+//
+//                                lines.add(h);
+//
+//                                for(HashMap<String, TerritoryPositionCircle> temp : lTemp){
+//                                    lines.remove(temp);
+//                                }
+//
+//                                lTemp.clear();
+//                                mapMergeList.clear();
+//
+//                                Log.d(TAG, "lines size : " + lines.size());
+//
+//                                for(HashMap<String, TerritoryPositionCircle> h2 : lines){
+//                                    Log.d(TAG, "Hash: "  + h2.toString());
+//                                    Log.d(TAG, "Hash: "  + h2.keySet().size());
+//                                    for(String s : h2.keySet()){
+//                                        Log.d(TAG, "Position: " + h2.get(s));
+//                                    }
+//                                }
+//                            }
 
                             inTree = false;
+
+                            args[0] = k1.getPosition()[0];
+                            args[1] = k1.getPosition()[1];
+                            args[2] = k2.getPosition()[0];
+                            args[3] = k2.getPosition()[1];
+                            TerritoryShapeLine t = new TerritoryShapeLineToNeighbor(args);
 
                             stringToLine.put(k1.toString() + "_" + k2.toString(), t);
                         }
@@ -166,11 +191,28 @@ public class TerritoryManagerCircle extends TerritoryManager{
 
                 if(!hasNeighbor) {
                     k1.increaseNeighborRadius();
-                } else{
-                    break;
                 }
             }
         }
+
+//        Log.d(TAG, "Number of territories: " + stringToTerritories.keySet().size());
+//
+//        Log.d(TAG, "Number of continents: " + lines.size());
+//
+//        for(HashMap<String, TerritoryPositionCircle> h : lines){
+//            Log.d(TAG, "Hash: "  + h.toString());
+//            Log.d(TAG, "Hash: "  + h.keySet().size());
+//            for(String s : h.keySet()){
+//                Log.d(TAG, "Position: " + h.get(s));
+//            }
+//        }
+//
+//        connectContinents(lines, args);
+
+        return true;
+    }
+
+    public Boolean connectContinents(ArrayList<HashMap<String, TerritoryPositionCircle>> lines, float[] args) throws Exception {
 
         ArrayList<TerritoryPositionCircle> pList = new ArrayList<TerritoryPositionCircle>();
         String pString = "";
@@ -203,13 +245,6 @@ public class TerritoryManagerCircle extends TerritoryManager{
                 pPrev = p;
             }
         }
-
-        Log.d(TAG, "Number of territories: " + stringToTerritories.keySet().size());
-
-        return true;
-    }
-
-    public Boolean connectContinents(){
         return false;
     }
 
